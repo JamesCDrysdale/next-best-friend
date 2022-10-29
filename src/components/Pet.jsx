@@ -1,9 +1,23 @@
-const Pet = (props) => {
+const Pet = ({ name, species, breed, images, location, id }) => {
+  let hero = "http://pet-images.dev-apis.com/pets/none.jpg";
+  if (images.length) {
+    hero = images[0];
+  }
+
   return (
     <div>
-      <h1>{props.name}</h1>
-      <h2>{props.species}</h2>
-      <h2>{props.breed}</h2>
+      <a href={`/details/${id}`} className="pet">
+        <div className="image-container">
+          <img src={hero} alt={name} />
+        </div>
+        <div className="info">
+          <h1>{name}</h1>
+          <h2>
+            {species} - {breed}
+          </h2>
+          <h2>{location}</h2>
+        </div>
+      </a>
     </div>
   );
 };

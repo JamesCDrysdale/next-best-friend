@@ -1,4 +1,4 @@
-import Pet from "./Pet";
+import Pet from "./components/Pet";
 
 const Results = ({ pets }) => {
   return (
@@ -10,7 +10,7 @@ const Results = ({ pets }) => {
         pets.map((pet) => (
           <Pet
             name={pet.name}
-            species={pet.species}
+            species={pet.animal}
             breed={pet.breed}
             key={pet.id}
             images={pet.images}
