@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import useBreedList from "../useBreedList";
-import Results from "../Results";
+import Results from "../components/Results";
 
 const SPECIES = [
   "cat",
