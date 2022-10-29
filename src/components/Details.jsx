@@ -1,13 +1,19 @@
 import { Component, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Carousel from "./Carousel";
 
 // This is a class component
 class Details extends Component {
-  constructor(props) {
-    super(props);
+  // new feature: class properties
+  state = { loading: true };
 
-    this.state = { loading: true };
-  }
+  // This is how you would create a constructor in a normal class.
+  // I have refactored it, above, using a new feature: Class properties
+  //   constructor(props) {
+  //     super(props);
+
+  //     this.state = { loading: true };
+  //   }
 
   //lifecyle
   async componentDidMount() {
@@ -28,19 +34,23 @@ class Details extends Component {
       return <h2>loading...</h2>;
     }
 
-    const { species, breed, city, state, description, name } = this.state;
+    const { animal, breed, city, state, description, name, images } =
+      this.state;
 
     return (
       <div className="details">
-        <h1>{name}</h1>
-        <h2>
-          {species} - {breed}
-        </h2>
-        <h2>
-          {city} - {state}
-        </h2>
-        <button>Adopt {name}</button>
-        <p>{description}</p>
+        <Carousel images={images} />
+        <div>
+          <h1>{name}</h1>
+          <h2>
+            {animal} - {breed}
+          </h2>
+          <h2>
+            {city} - {state}
+          </h2>
+          <button>Adopt {name}</button>
+          <p>{description}</p>
+        </div>
       </div>
     );
   }
