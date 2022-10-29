@@ -1,13 +1,16 @@
 import { render } from "react-dom";
 import Pet from "./Pet";
+import SearchParams from "./SearchParams";
 
 const App = () => {
   return (
     <div>
       <h1>Next Best Friend</h1>
+      <SearchParams />
+      {/* Don't need for now but will resuse later so keeping commented out for now
       <Pet name="Ollie" species="Dog" breed="Border Collie" />
       <Pet name="Harry" species="Hamster" breed="Syrian" />
-      <Pet name="Dexter" species="Cat" breed="Ragdoll" />
+      <Pet name="Dexter" species="Cat" breed="Ragdoll" /> */}
     </div>
   );
 };
