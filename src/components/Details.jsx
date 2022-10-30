@@ -2,6 +2,7 @@ import { Component, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Carousel from "./Carousel";
 import ErrorBoundary from "./ErrorBoundary";
+import ThemeContext from "./ThemeContext";
 
 // This is a class component
 class Details extends Component {
@@ -49,7 +50,11 @@ class Details extends Component {
           <h2>
             {city} - {state}
           </h2>
-          <button>Adopt {name}</button>
+          <ThemeContext.Consumer>
+            {([theme]) => (
+              <button style={{ backgroundColor: theme }}>Adopt {name}</button>
+            )}
+          </ThemeContext.Consumer>
           <p>{description}</p>
         </div>
       </div>

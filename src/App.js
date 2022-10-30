@@ -2,23 +2,28 @@ import { render } from "react-dom";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import SearchParams from "./components/SearchParams";
 import Details from "./components/Details";
+import { useState } from "react";
+import ThemeContext from "./components/ThemeContext";
 
 const App = () => {
+  const theme = useState("green");
   return (
-    <div>
-      <BrowserRouter>
-        <header>
-          <Link to="/" className="title">
-            Next Best Friend
-          </Link>
-        </header>
+    <ThemeContext.Provider value={theme}>
+      <div>
+        <BrowserRouter>
+          <header>
+            <Link to="/" className="title">
+              Next Best Friend
+            </Link>
+          </header>
 
-        <Routes>
-          <Route path="/details/:id" element={<Details />} />
-          <Route path="/" element={<SearchParams />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+          <Routes>
+            <Route path="/details/:id" element={<Details />} />
+            <Route path="/" element={<SearchParams />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
+    </ThemeContext.Provider>
   );
 };
 
