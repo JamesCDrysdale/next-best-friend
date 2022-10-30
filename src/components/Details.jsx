@@ -3,11 +3,12 @@ import { useParams } from "react-router-dom";
 import Carousel from "./Carousel";
 import ErrorBoundary from "./ErrorBoundary";
 import ThemeContext from "./ThemeContext";
+import Modal from "./Modal";
 
 // This is a class component
 class Details extends Component {
   // new feature: class properties
-  state = { loading: true };
+  state = { loading: true, showModal: false };
 
   // This is how you would create a constructor in a normal class.
   // I have refactored it, above, using a new feature: Class properties
@@ -29,6 +30,8 @@ class Details extends Component {
     // this.setState( { loading: false, ...json.pets[0] } );
   }
 
+  toggleModal = () => this.setState({ showModal: !this.state.showModal });
+
   // class components MUST have a render function
   // You cannot use hooks here
   render() {
@@ -36,7 +39,7 @@ class Details extends Component {
       return <h2>loading...</h2>;
     }
 
-    const { animal, breed, city, state, description, name, images } =
+    const { animal, breed, city, state, description, name, images, showModal } =
       this.state;
 
     return (
@@ -52,10 +55,26 @@ class Details extends Component {
           </h2>
           <ThemeContext.Consumer>
             {([theme]) => (
-              <button style={{ backgroundColor: theme }}>Adopt {name}</button>
+              <button
+                onClick={this.toggleModal}
+                style={{ backgroundColor: theme }}
+              >
+                Adopt {name}
+              </button>
             )}
           </ThemeContext.Consumer>
           <p>{description}</p>
+          {showModal ? (
+            <Modal>
+              <div>
+                <h1>Would you like to adopt {name}?</h1>
+                <div className="buttons">
+                  <a href="#">Yes</a>
+                  <button onClick={this.toggleModal}>No</button>
+                </div>
+              </div>
+            </Modal>
+          ) : null}
         </div>
       </div>
     );
